@@ -4,8 +4,9 @@ This project is an ATM simulator developed in Python, featuring a graphical inte
 
 The simulator allows users to register, log in using a PIN, check their balance, make deposits and withdrawals, and view a transaction history.
 
-|--------------------------------------------------|--------------------------------------------|
 | ![Welcome Screen](./interface/WelcomeScreen.png) | ![User Screen](./interface/UserScreen.png) |
+|:--:|:--:|
+
 
 ## Main Features
 
