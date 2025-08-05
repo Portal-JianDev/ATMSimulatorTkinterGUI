@@ -1,0 +1,38 @@
+# Python cache and compiled files.
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments.
+env/
+venv/
+.venv/
+
+# Editor and IDE configs.
+
+.vscode/
+.idea/
+
+# System files.
+
+.DS_Store
+Thumbs.db
+
+# Environment files (if used)
+
+.env
+
+# Log files.
+
+*.log
+/data/transactions.log
+
+# User data (runtime-generated)
+
+/data/users.json
+
+# Backup or temporary files.
+
+*.bak
+*.tmp
