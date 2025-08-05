@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 import os
 
+# GUI components and logic for the ATM application.
 class LoginScreen:
     def __init__(self, atm):
         self.atm = atm
@@ -15,7 +16,8 @@ class LoginScreen:
 
         tk.Button(self.root, text="Iniciar sesión", command=self.login).pack(pady=5)
         tk.Button(self.root, text="Registrarse", command=self.go_to_register).pack()
-
+    
+    # Login: validates the PIN and shows the menu if it's correct.
     def login(self):
         pin = self.pin_entry.get()
         if self.atm.login(pin):
@@ -23,10 +25,11 @@ class LoginScreen:
         else:
             messagebox.showerror("Error", "PIN incorrecto")
 
+    # Go to the registration screen.
     def go_to_register(self):
         self.atm.show_register()
 
-
+# Registration screen for creating a new user account.
 class RegisterScreen:
     def __init__(self, atm):
         self.atm = atm
@@ -45,6 +48,7 @@ class RegisterScreen:
         tk.Button(self.root, text="Crear cuenta", command=self.register).pack(pady=5)
         tk.Button(self.root, text="Volver", command=self.atm.show_login).pack()
 
+    # Register a new user account.
     def register(self):
         name = self.name_entry.get().strip()
         pin = self.pin_entry.get().strip()
@@ -60,7 +64,7 @@ class RegisterScreen:
         else:
             messagebox.showerror("Error", "El PIN ya está en uso. Intente con otro.")
 
-
+# Main menu screen after successful login.
 class MenuScreen:
     def __init__(self, atm):
         self.atm = atm
@@ -77,12 +81,14 @@ class MenuScreen:
         ).pack(pady=5)
         tk.Button(self.root, text="Cerrar sesión", width=20, command=self.atm.logout).pack(pady=10)
 
+    # Show the current balance of the user.
     def view_balance(self):
         balance = self.atm.current_user.balance
         messagebox.showinfo(
             "Saldo actual", f"Tu saldo es: ${balance:,.0f}".replace(",", ".")
         )
 
+    # Deposit money into the user's account.
     def deposit(self):
         raw_input = simpledialog.askstring(
             "Depósito",
@@ -108,7 +114,8 @@ class MenuScreen:
         messagebox.showinfo(
             "Éxito", f"Has depositado ${amount:,.0f}".replace(",", ".")
         )
-
+   
+    # Withdraw money from the user's account.
     def withdraw(self):
         raw_input = simpledialog.askstring(
             "Retiro",
@@ -148,6 +155,7 @@ class MenuScreen:
         except ValueError as e:
             messagebox.showwarning("Fondos insuficientes", str(e))
 
+    # View the user's last 10 transactions.
     def view_transactions(self):
         username = self.atm.current_user.name
         log_path = "data/transactions.log"
